@@ -82,7 +82,17 @@ scala> greet()
 Hello, world!
 ```
 
+스칼라 스크립트
+
+hello.scala
+
+```scala
+println("Hello, world!")
 ```
+
+아래 오류 발생
+
+```scala
 C:\Users\sukju\dev\first_scala>scala hello.scala
 -- [E103] Syntax Error: C:\Users\sukju\dev\first_scala\hello.scala:1:0 ---------
 1 |println("Hello, world from a script!")
@@ -92,4 +102,46 @@ C:\Users\sukju\dev\first_scala>scala hello.scala
 longer explanation available when compiling with `-explain`
 1 error found
 Error: Errors encountered during compilation
+```
+
+hello.scala 정상 실행
+
+```scala
+object HelloWorld {
+  def main(args: Array[String]): Unit = {
+    println("Hello, world!")
+  }
+}
+```
+
+결과
+
+```bash
+$ scala hello.scala
+Hello, world!
+```
+
+명령행 인자 받기
+
+```scala
+// 주석은 이렇게 작성한다
+object HelloWorld {
+  def main(args: Array[String]): Unit = {
+    println("Hello, " + args(0) + " world!")
+  }
+}
+```
+
+명령행 인자를 받은 텍스트 모두 출럭
+
+```scala
+object PrintStrings {
+  def main(args: Array[String]): Unit = {
+    var i = 0
+    while(i < args.length){
+      println(args(i))
+      i += 1
+    }
+  }
+}
 ```
