@@ -145,3 +145,124 @@ object PrintStrings {
   }
 }
 ```
+
+배열 열거하기
+
+```scala
+val greetingString: Array[String] = new Array[String](3)
+
+    greetingString(0) = "Hello"
+    greetingString(1) = ", "
+    greetingString(2) = "world \n"
+
+    for (i <- 0 to 2)
+      print(greetingString(i))
+
+    greetingString.foreach(print)
+```
+
+연산자는 메소드이다
+
+```scala
+
+println(1 + 2)
+println((1).+(2))
+
+```
+
+변수뒤에 괄호를 둘러싸서 호출하면 그 크도를 변수에 대해 apply 메소드를 호출하는 것으로 바꾼다.
+
+```scala
+greetingString(0) = "Hello"
+greetingString(1) = ", "
+greetingString(2) = "world \n"
+```
+
+같은 타입의 객체로 이루어진 변경 불가능한 시퀀스 List 클래스
+
+```scala
+val oneTwoThree = List(1, 2, 3)
+val oneTwo = List(1, 2)
+val threeFour = List(3, 4)
+val oneTwoThreeFor = oneTwo ::: threeFour
+```
+
+변경 불가능하지만 다른 타입의 원소를 넣을 수 있는 튜플
+
+```scala
+scala> val pair = (99, "Luftballons")
+val pair: (Int, String) = (99,Luftballons)
+
+scala> println(pair._1)
+99
+
+scala> println(pair._2)
+Luftballons
+```
+
+변경 불가능한 집합을 만들고 초기화 사용
+
+아래 코드에서 jetSet += "Lear" 를 실행하면 새로은 객체가 생성된다.
+
+```scala
+scala> var jetSet = Set("Boeing", "Aribus")
+var jetSet: Set[String] = Set(Boeing, Aribus)
+
+scala> jetSet
+val res0: Set[String] = Set(Boeing, Aribus)
+
+scala> jetSet += "Lear"
+
+scala> println(jetSet.contains("Cessna"))
+false
+
+scala> jetSet
+val res1: Set[String] = Set(Boeing, Aribus, Lear)
+```
+
+변경 가능한 집합 사용 예
+
+scala.collection.mutable 이 필요하다.
+
+```scala
+scala> import scala.collection.mutable
+
+scala> val movieSet = mutable.Set("Hitch", "Poltergeist")
+val movieSet: scala.collection.mutable.Set[String] = HashSet(Hitch, Poltergeist)
+
+scala> movieSet += "Shrek"
+val res2: scala.collection.mutable.Set[String] = HashSet(Hitch, Shrek, Poltergeist)
+
+scala> println(movieSet)
+HashSet(Hitch, Shrek, Poltergeist)
+```
+
+변경가능한 Map
+
+```scala
+scala> val treasureMap = mutable.Map[Int, String]()
+val treasureMap: scala.collection.mutable.Map[Int, String] = HashMap()
+
+scala> treasureMap += (1 -> "Go to island.")
+val res4: scala.collection.mutable.Map[Int, String] = HashMap(1 -> Go to island.)
+
+scala> treasureMap += (2 -> "Find big X on ground.")
+val res5: scala.collection.mutable.Map[Int, String] = HashMap(1 -> Go to island., 2 -> Find big X on ground.)
+
+scala> treasureMap += (3 -> "Dig.")
+val res6: scala.collection.mutable.Map[Int, String] = HashMap(1 -> Go to island., 2 -> Find big X on ground., 3 -> Dig.)
+
+scala> println(treasureMap(2))
+Find big X on ground.
+```
+
+변경 불가능한 맵
+
+```scala
+scala> val romanNumeral = Map(1 -> "I", 2 -> "II", 3 -> "III", 4 -> "IV", 5 -> "V")
+val romanNumeral: Map[Int, String] = HashMap(5 -> V, 1 -> I, 2 -> II, 3 -> III, 4 ->
+IV)
+
+scala> println(romanNumeral(4))
+IV
+```
